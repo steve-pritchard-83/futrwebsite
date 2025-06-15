@@ -7,6 +7,7 @@ import Cursor from './Cursor';
 import Header from './components/Header';
 import About from './components/About';
 import Members from './components/Members';
+import Merch from './components/Merch';
 import Brands from './components/Brands';
 // import Media from './components/Media';
 import Contact from './components/Contact';
@@ -39,19 +40,11 @@ function App() {
       <FloatingClouds scrollYProgress={scrollYProgress} />
       <Header />
       <main>
-        <motion.div id="about" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={sectionVariants}>
-          <About />
-        </motion.div>
-        <motion.div id="members" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={sectionVariants}>
-          <Members />
-        </motion.div>
-        <motion.div id="brands" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={sectionVariants}>
-          <Brands />
-        </motion.div>
-        {/* <Media /> */}
-        <motion.div id="contact" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={sectionVariants}>
-          <Contact />
-        </motion.div>
+        <About />
+        <Members />
+        <Merch />
+        <Brands />
+        <Contact />
       </main>
       <Footer />
       <BackToTopButton />

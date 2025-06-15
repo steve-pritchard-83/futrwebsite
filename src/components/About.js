@@ -31,7 +31,7 @@ const About = () => {
     >
       <motion.h2 variants={itemVariants}>FORGED IN THE STORM</motion.h2>
       <motion.p className={styles.intro} variants={itemVariants}>
-      <p>We are FUTR. Not a clan. A contract. Signed in dropped crowns and midnight queues. We don’t log on — we clock in. We warm up before school, VOD review after dinner, and we're still running sets while the world sleeps. This isn’t casual. This is comp. Every ping matters. Every death gets dissected. The grind is real. The FUTR is earned.</p>
+      <p>"We are FUTR. Not a clan. A contract. Signed in dropped crowns and midnight queues. We don’t log on — we clock in. We warm up before school, VOD review after dinner, and we're still running sets while the world sleeps. This isn’t casual. This is comp. Every ping matters. Every death gets dissected. The grind is real. The FUTR is earned."</p>
       </motion.p>
       <motion.div className={styles.philosophyGrid} variants={containerVariants}>
         <motion.div className={styles.philosophyItem} variants={itemVariants}>
