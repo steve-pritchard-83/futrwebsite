@@ -5,8 +5,9 @@ import styles from './Members.module.css';
 
 const members = [
   { name: 'Callum', username: 'jamsyfv', trackerUrl: 'https://fortnitetracker.com/profile/all/jamsyfv' },
-  { name: 'Finn', username: 'F3IN', trackerUrl: 'https://fortnitetracker.com/profile/all/f3in' },
+  { name: 'Finn', username: 'ꜰᴜᴛʀ F3IN', trackerUrl: 'https://fortnitetracker.com/profile/all/%ea%9c%b0%e1%b4%9c%e1%b4%9b%ca%80%20F3IN' },
   { name: 'Judd', username: 'stoneagelover', trackerUrl: 'https://fortnitetracker.com/profile/all/Stoneagelover' },
+  { name: 'Wihan', username: 'futr RYZ', trackerUrl: null },
 ];
 
 const containerVariants = {
@@ -44,10 +45,12 @@ const Members = () => {
           >
             <h3 className={styles.memberName}>{member.name}</h3>
             <p className={styles.memberUsername}>@{member.username}</p>
-            <a href={member.trackerUrl} target="_blank" rel="noopener noreferrer" className={styles.statsLink}>
-              <FaFortAwesome />
-              <span>Track The Rise</span>
-            </a>
+            {member.trackerUrl && (
+              <a href={member.trackerUrl} target="_blank" rel="noopener noreferrer" className={styles.statsLink}>
+                <FaFortAwesome />
+                <span>Track The Rise</span>
+              </a>
+            )}
           </motion.div>
         ))}
       </motion.div>

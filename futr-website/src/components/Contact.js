@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
+import ReCAPTCHA from 'react-google-recaptcha';
 import styles from './Contact.module.css';
 import { FaPaperPlane } from 'react-icons/fa';
 
@@ -17,26 +18,46 @@ const itemVariants = {
 const Contact = () => {
     const [isSending, setIsSending] = useState(false);
     const [isSent, setIsSent] = useState(false);
+    const [isVerified, setIsVerified] = useState(false);
+    const recaptchaRef = useRef();
+    const recaptchaSiteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
+
+    function handleCaptchaChange(value) {
+        if (value) {
+            setIsVerified(true);
+        }
+    }
 
     const sendEmail = (e) => {
         e.preventDefault();
         setIsSending(true);
 
-        emailjs.sendForm(
-            process.env.REACT_APP_EMAILJS_SERVICE_ID,
-            process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-            e.target,
-            process.env.REACT_APP_EMAILJS_USER_ID
-        ).then((result) => {
-            console.log(result.text);
+        const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+        const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+        const userID = process.env.REACT_APP_EMAILJS_USER_ID;
+
+        if (!serviceID || !templateID || !userID) {
+            console.error("EmailJS environment variables are not set. Please check your .env file.");
+            alert("Email service is not configured correctly. Please contact the administrator.");
             setIsSending(false);
-            setIsSent(true);
-        }, (error) => {
-            console.log(error.text);
-            alert('Failed to send message, please try again.');
-            setIsSending(false);
-        });
+            return;
+        }
+
+        emailjs.sendForm(serviceID, templateID, e.target, userID)
+            .then((result) => {
+                console.log('SUCCESS!', result.status, result.text);
+                setIsSending(false);
+                setIsSent(true);
+            }, (error) => {
+                console.error('FAILED...', error);
+                alert(`Failed to send message. Error: ${error.text || 'Unknown error'}`);
+                setIsSending(false);
+            });
         e.target.reset();
+        if (recaptchaRef.current) {
+            recaptchaRef.current.reset();
+        }
+        setIsVerified(false);
     };
 
     return (
@@ -65,7 +86,22 @@ const Contact = () => {
                     <textarea name="message" rows="5" placeholder=" " required className={styles.formInput}></textarea>
                     <label htmlFor="message" className={styles.formLabel}>Tell us your story. Why FUTR?</label>
                 </div>
-                <button type="submit" className={styles.submitButton} disabled={isSending || isSent}>
+                <div className={styles.recaptchaContainer}>
+                    {recaptchaSiteKey ? (
+                        <ReCAPTCHA
+                            ref={recaptchaRef}
+                            sitekey={recaptchaSiteKey}
+                            onChange={handleCaptchaChange}
+                            theme="dark"
+                        />
+                    ) : (
+                        <p className={styles.errorText}>
+                            reCAPTCHA is not configured. <br />
+                            Please ensure <code>REACT_APP_RECAPTCHA_SITE_KEY</code> is set in your <code>.env</code> file.
+                        </p>
+                    )}
+                </div>
+                <button type="submit" className={styles.submitButton} disabled={isSending || isSent || !isVerified}>
                     {isSending ? 'SENDING...' : isSent ? 'SENT!' : <> <FaPaperPlane /> SEND APPLICATION </>}
                 </button>
             </motion.form>
