@@ -1,7 +1,8 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { motion, useScroll } from 'framer-motion';
 import './App.css';
+import { Analytics } from '@vercel/analytics/react';
 
 import Cursor from './Cursor';
 import Header from './components/Header';
@@ -32,22 +33,26 @@ function App() {
 
   return (
     <div className="App">
-      <Helmet>
-        <title>FUTR Clan | Professional Fortnite Team</title>
-        <meta name="description" content="The official website for FUTR, a professional Fortnite competitive clan. Join us to find out more about our members, see our media, and get in touch." />
-      </Helmet>
-      <Cursor />
-      <FloatingClouds scrollYProgress={scrollYProgress} />
-      <Header />
-      <main>
-        <About />
-        <Members />
-        <Merch />
-        <Brands />
-        <Contact />
-      </main>
-      <Footer />
-      <BackToTopButton />
+      <HelmetProvider>
+        <Helmet>
+          <title>FUTR Clan | Professional Fortnite Team</title>
+          <meta name="description" content="The official website for FUTR, a professional Fortnite competitive clan. Join us to find out more about our members, see our media, and get in touch." />
+          <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+        </Helmet>
+        <Cursor />
+        <FloatingClouds scrollYProgress={scrollYProgress} />
+        <Header />
+        <main>
+          <About />
+          <Members />
+          <Merch />
+          <Brands />
+          <Contact />
+        </main>
+        <Footer />
+        <BackToTopButton />
+        <Analytics />
+      </HelmetProvider>
     </div>
   );
 }
