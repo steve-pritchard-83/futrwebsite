@@ -1,0 +1,81 @@
+.brandsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.brandCard {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brandCard:hover {
+    transform: translateY(-5px);
+}
+
+@keyframes pulse-glow {
+  0% {
+    filter: grayscale(30%) drop-shadow(0 0 10px rgba(0, 255, 255, 0.4));
+  }
+  50% {
+    filter: grayscale(10%) drop-shadow(0 0 25px var(--accent-color));
+  }
+  100% {
+    filter: grayscale(30%) drop-shadow(0 0 10px rgba(0, 255, 255, 0.4));
+  }
+}
+
+.logo {
+  max-height: 100px;
+  max-width: 220px;
+  margin-bottom: 1.5rem;
+  animation: pulse-glow 2.5s infinite ease-in-out;
+  transition: transform 0.3s ease;
+}
+
+.brandCard:hover .logo {
+    animation-play-state: paused;
+    filter: grayscale(0%) drop-shadow(0 0 25px var(--accent-color));
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.brandLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--light-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid var(--accent-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+    margin-top: 1rem;
+}
+
+.brandLink:hover {
+    background: rgba(0, 255, 255, 0.2);
+    color: #fff;
+    border-color: var(--light-color);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+} 

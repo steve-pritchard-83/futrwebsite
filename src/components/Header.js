@@ -16,10 +16,11 @@ const Header = () => {
         <img src={logo} alt="FUTR Clan Logo" className={styles.logo} />
       </div>
       <h1 className={styles.title}>FUTR</h1>
-      <p className={styles.subtitle}>The future of Fortnite is not a spectator sport. It's an arena. And we're stepping in.</p>
+      <p className={styles.subtitle}>“The grind is real. The FUTR is earned.”</p>
       <nav className={styles.nav}>
         <Link to="about" smooth={true} duration={500} className={styles.navLink}>About</Link>
         <Link to="members" smooth={true} duration={500} className={styles.navLink}>Members</Link>
+        <Link to="brands" smooth={true} duration={500} className={styles.navLink}>Brands</Link>
         <Link to="contact" smooth={true} duration={500} className={styles.navLink}>Contact</Link>
         <Link to="contact" smooth={true} duration={500} className={`${styles.navLink} ${styles.ctaLink}`}>Join Us</Link>
       </nav>

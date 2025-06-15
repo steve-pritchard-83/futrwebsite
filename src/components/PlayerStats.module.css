@@ -1,0 +1,50 @@
+.statsContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  width: 100%;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.statValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #00f2fe;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 5px;
+}
+
+.loading,
+.error {
+  color: #fff;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.error {
+    color: #ff4d4d;
+}
+
+.error a {
+    color: #00f2fe;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.error a:hover {
+    text-decoration: none;
+} 
