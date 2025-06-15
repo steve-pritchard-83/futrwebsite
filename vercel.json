@@ -4,15 +4,11 @@
     {
       "src": "futr-website/package.json",
       "use": "@vercel/static-build",
-      "config": {
-        "distDir": "futr-website/build"
-      }
+      "config": { "distDir": "build" }
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "futr-website/$1"
-    }
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
   ]
 } 
