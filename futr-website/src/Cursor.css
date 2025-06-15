@@ -1,0 +1,21 @@
+body {
+    cursor: none;
+}
+
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #a0ddff;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    z-index: 9999;
+}
+
+.cursor.hover {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(160, 221, 255, 0.5);
+} 
