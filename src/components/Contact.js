@@ -4,6 +4,7 @@ import emailjs from '@emailjs/browser';
 import ReCAPTCHA from 'react-google-recaptcha';
 import styles from './Contact.module.css';
 import { FaPaperPlane } from 'react-icons/fa';
+import Button from './Button';
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -21,6 +22,9 @@ const Contact = () => {
     const [isVerified, setIsVerified] = useState(false);
     const recaptchaRef = useRef();
     const recaptchaSiteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
+    const form = useRef();
+    const [statusMessage, setStatusMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     function handleCaptchaChange(value) {
         if (value) {
@@ -48,10 +52,12 @@ const Contact = () => {
                 console.log('SUCCESS!', result.status, result.text);
                 setIsSending(false);
                 setIsSent(true);
+                setStatusMessage('Message sent successfully!');
             }, (error) => {
                 console.error('FAILED...', error);
                 alert(`Failed to send message. Error: ${error.text || 'Unknown error'}`);
                 setIsSending(false);
+                setErrorMessage('Failed to send message. Please try again later.');
             });
         e.target.reset();
         if (recaptchaRef.current) {
@@ -73,7 +79,7 @@ const Contact = () => {
             <motion.p variants={itemVariants} className={styles.description}>
                 The FUTR is built, not given. If you've got the drive and the dream, we want to hear from you. Show us you belong here.
             </motion.p>
-            <motion.form onSubmit={sendEmail} variants={itemVariants}>
+            <motion.form ref={form} onSubmit={sendEmail} variants={itemVariants} className={styles.form}>
                 <div className={styles.formGroup}>
                     <input type="text" name="from_name" placeholder=" " required className={styles.formInput} />
                     <label htmlFor="from_name" className={styles.formLabel}>Your In-Game Name</label>
@@ -101,10 +107,14 @@ const Contact = () => {
                         </p>
                     )}
                 </div>
-                <button type="submit" className={styles.submitButton} disabled={isSending || isSent || !isVerified}>
-                    {isSending ? 'SENDING...' : isSent ? 'SENT!' : <> <FaPaperPlane /> SEND APPLICATION </>}
-                </button>
+                <div className={styles.buttonWrapper}>
+                    <Button type="submit" disabled={isSending || !isVerified}>
+                        {isSending ? 'Sending...' : 'Send Message'}
+                    </Button>
+                </div>
             </motion.form>
+            {statusMessage && <p className={styles.status}>{statusMessage}</p>}
+            {errorMessage && <p className={styles.error}>{errorMessage}</p>}
         </motion.section>
     );
 };

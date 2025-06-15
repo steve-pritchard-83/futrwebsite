@@ -45,11 +45,13 @@ const Members = () => {
           >
             <h3 className={styles.memberName}>{member.name}</h3>
             <p className={styles.memberUsername}>@{member.username}</p>
-            {member.trackerUrl && (
+            {member.trackerUrl ? (
               <a href={member.trackerUrl} target="_blank" rel="noopener noreferrer" className={styles.statsLink}>
                 <FaFortAwesome />
                 <span>Track The Rise</span>
               </a>
+            ) : (
+              <p className={styles.noLink}>Stats Coming Soon</p>
             )}
           </motion.div>
         ))}

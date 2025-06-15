@@ -1,0 +1,50 @@
+.button {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s ease-in-out;
+  z-index: 1;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button:hover {
+  color: var(--background-dark);
+}
+
+.button:disabled {
+  border-color: var(--text-secondary);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+.button:disabled:hover {
+  color: var(--text-secondary);
+}
+
+.button:disabled:hover::before {
+  transform: scaleX(0);
+} 

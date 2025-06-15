@@ -74,29 +74,13 @@ form {
   font-family: monospace;
 }
 
-.submitButton {
-  display: inline-flex;
-  align-items: center;
+.buttonWrapper {
+  display: flex;
   justify-content: center;
-  gap: 0.75rem;
-  background: var(--primary-color);
-  color: var(--dark-bg);
-  border: none;
-  padding: 1rem;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
 }
 
-.submitButton:hover:not(:disabled) {
-  background: var(--light-color);
-  transform: scale(1.05);
-}
-
-.submitButton:disabled {
-  background: #555;
-  cursor: not-allowed;
-  transform: scale(1);
+.submitButton {
+  /* This class is no longer used by the Button component, but we'll clear it just in case */
+  /* Styles are now controlled by the reusable Button.module.css */
 } 
