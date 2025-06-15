@@ -3,6 +3,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { motion, useScroll } from 'framer-motion';
 import './App.css';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import Cursor from './Cursor';
 import Header from './components/Header';
@@ -52,6 +53,7 @@ function App() {
         <Footer />
         <BackToTopButton />
         <Analytics />
+        <SpeedInsights />
       </HelmetProvider>
     </div>
   );
