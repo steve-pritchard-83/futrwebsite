@@ -5,8 +5,8 @@ import styles from './Members.module.css';
 // import PlayerStats from './PlayerStats';
 
 const members = [
-  { name: 'Judd', username: 'Stoneagelover', trackerUrl: 'https://fortnitetracker.com/profile/all/Stoneagelover' },
   { name: 'Callum', username: 'fUTR jamsyfv', trackerUrl: 'https://fortnitetracker.com/profile/all/jamsyfv' },
+  { name: 'Judd', username: 'Stoneagelover', trackerUrl: 'https://fortnitetracker.com/profile/all/Stoneagelover' },
   { name: 'Finn', username: 'ꜰᴜᴛʀ F3IN', trackerUrl: 'https://fortnitetracker.com/profile/all/%ea%9c%b0%e1%b4%9c%e1%b4%9b%ca%80%20F3IN' },
   { name: 'Wihan', username: 'futr RYZ', trackerUrl: null },
 ];
