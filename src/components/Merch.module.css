@@ -14,18 +14,18 @@
 }
 
 .merchContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-}
-
-.merchImage {
-    max-width: 60%;
-    height: auto;
+    max-width: 400px;
+    margin: 0 auto;
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1rem;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.merchImage {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
 } 
