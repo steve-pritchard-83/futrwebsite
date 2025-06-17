@@ -1,10 +1,19 @@
 :root {
-  --dark-bg: #0f172a;
-  --glass-bg: rgba(15, 23, 42, 0.6);
-  --primary-color: #38bdf8;
-  --light-color: #f8fafc;
-  --text-color: #cbd5e1;
-  --border-color: rgba(56, 189, 248, 0.2);
+  --dark-bg: #0A0F1A;
+  --glass-bg: rgba(15, 23, 42, 0.5);
+  --primary-color: #00A9FF;
+  --light-color: #F8FAFC;
+  --text-color: #CBD5E1;
+  --text-secondary: #94a3b8;
+  --border-color: rgba(0, 169, 255, 0.2);
+  --shadow-color: rgba(0, 169, 255, 0.1);
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 64px;
 }
 
 body {
@@ -38,23 +47,29 @@ body::before {
 
 h2 {
   font-family: 'Orbitron', sans-serif;
-  font-size: 2.5rem;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-align: center;
   margin-top: 0;
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-xxl);
   color: var(--light-color);
-  text-shadow: 0 0 5px var(--primary-color);
+  text-shadow: 0 0 10px var(--shadow-color), 0 0 20px var(--shadow-color);
 }
 
 .glass-container {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(0, 169, 255, 0.08), transparent 70%),
+    var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 20px;
-  padding: 2.5rem;
-  margin: 0 auto 2rem auto;
+  padding: var(--space-xxl);
+  margin: 0 auto var(--space-xxl) auto;
   border: 1px solid var(--border-color);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
   max-width: 1200px;
 }
 
@@ -187,4 +202,32 @@ button:hover {
   body {
     background-attachment: scroll;
   }
+
+  .glass-container {
+    padding: var(--space-xl);
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+}
+
+.loader {
+  border: 8px solid rgba(255, 255, 255, 0.2);
+  border-left-color: var(--primary-color);
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-text {
+  margin-top: 1rem;
 }

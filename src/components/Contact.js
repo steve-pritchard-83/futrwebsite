@@ -31,18 +31,18 @@ const Contact = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-        const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-        const userID = process.env.REACT_APP_EMAILJS_USER_ID;
+        const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-        if (!serviceID || !templateID || !userID) {
+        if (!serviceID || !templateID || !publicKey) {
             console.error("EmailJS environment variables are not set. Please check your .env file.");
             alert("Email service is not configured correctly. Please contact the administrator.");
             setIsSubmitting(false);
             return;
         }
 
-        emailjs.sendForm(serviceID, templateID, e.target, userID)
+        emailjs.sendForm(serviceID, templateID, form.current, publicKey)
             .then((result) => {
                 console.log('SUCCESS!', result.status, result.text);
                 setIsSubmitting(false);
@@ -88,7 +88,7 @@ const Contact = () => {
                 <div className={styles.recaptchaContainer}>
                     <ReCAPTCHA
                         ref={recaptchaRef}
-                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
                         onChange={handleCaptchaChange}
                         theme="dark"
                     />

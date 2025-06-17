@@ -2,18 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaFortAwesome } from 'react-icons/fa';
 import styles from './Members.module.css';
-import callumImage from '../callum.png';
-import juddImage from '../judd.png';
-import finnImage from '../finn.png';
-import liamImage from '../liam.png';
-// import PlayerStats from './PlayerStats';
+import { members } from '../data/content.json';
 
-const members = [
-  { name: 'Callum', username: 'fUTR jamsyfv', trackerUrl: 'https://fortnitetracker.com/profile/all/jamsyfv', image: callumImage },
-  { name: 'Judd', username: 'Stoneagelover', trackerUrl: 'https://fortnitetracker.com/profile/all/Stoneagelover', image: juddImage },
-  { name: 'Finn', username: 'ꜰᴜᴛʀ F3IN', trackerUrl: 'https://fortnitetracker.com/profile/all/%ea%9c%b0%e1%b4%9c%e1%b4%9b%ca%80%20F3IN', image: finnImage },
-  { name: 'Liam', username: 'Liamos_34', trackerUrl: 'https://fortnitetracker.com/profile/all/Liamos_34', image: liamImage },
-];
+const memberImages = {
+  "callum.png": require('../callum.png'),
+  "judd.png": require('../judd.png'),
+  "finn.png": require('../finn.png'),
+  "liam.png": require('../liam.png')
+};
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -27,7 +23,15 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { scale: 0.5, opacity: 0 },
-  visible: { scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 120 } },
+  visible: { 
+    scale: 1, 
+    opacity: 1, 
+    transition: { 
+      type: 'spring', 
+      stiffness: 100,
+      damping: 10 
+    } 
+  },
 };
 
 const Members = () => {
@@ -49,7 +53,7 @@ const Members = () => {
             variants={itemVariants}
           >
             <h3 className={styles.memberName}>{member.name}</h3>
-            <img src={member.image} alt={member.name} className={styles.memberImage} />
+            <img src={memberImages[member.image]} alt={member.name} className={styles.memberImage} />
             <p className={styles.memberUsername}>@{member.username}</p>
             {/* <PlayerStats username={member.username} /> */}
             {member.trackerUrl ? (

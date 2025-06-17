@@ -1,79 +1,90 @@
 .membersGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+@media (max-width: 768px) {
+  .membersGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .memberCard {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    border-radius: 15px;
+    background: rgba(15, 23, 42, 0.4);
+    padding: var(--space-xl);
+    border-radius: 16px;
     text-align: center;
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .memberCard:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 169, 255, 0.15);
 }
 
 .memberImage {
-    width: 120px;
-    height: 120px;
+    width: 128px;
+    height: 128px;
     border-radius: 50%;
     object-fit: cover;
     object-position: 50% 20%;
-    margin: 1rem auto;
-    border: 2px solid var(--primary-color);
+    margin: var(--space-md) auto;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 15px var(--shadow-color);
 }
 
 .memberName {
-    margin-top: 1rem;
-    margin-bottom: 0.25rem;
-    font-size: 1.8rem;
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-xs);
+    font-size: 1.75rem;
     font-family: 'Orbitron', sans-serif;
     color: var(--light-color);
 }
 
 .memberUsername {
-    margin: 0.25rem 0 1rem 0;
+    margin: var(--space-xs) 0 var(--space-lg) 0;
     font-size: 1rem;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     font-style: normal;
 }
 
 .statsLink {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(0, 255, 255, 0.1);
-    color: var(--light-color);
-    padding: 0.6rem 1.2rem;
+    gap: var(--space-sm);
+    background: transparent;
+    color: var(--text-secondary);
+    padding: var(--space-sm) var(--space-lg);
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    border: 1px solid var(--accent-color);
-    transition: all 0.3s ease;
-    box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease-in-out;
 }
 
 .statsLink:hover {
-    background: rgba(0, 255, 255, 0.2);
-    color: #fff;
-    border-color: var(--light-color);
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    background: var(--primary-color);
+    color: var(--dark-bg);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--shadow-color);
 }
 
 .noLink {
   font-size: 0.9rem;
   color: var(--text-secondary);
   font-style: italic;
-  margin-top: calc(1rem + 2px); /* Align with button */
-  margin-bottom: calc(1rem + 2px);
-  padding: 0.5rem 1rem;
+  padding: var(--space-sm) var(--space-lg);
+  margin-top: calc(var(--space-sm) + 1px);
+  margin-bottom: calc(var(--space-sm) + 1px);
+  height: 44px; /* Match button height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 } 

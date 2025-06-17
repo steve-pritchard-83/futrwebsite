@@ -1,21 +1,33 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './Merch.module.css';
-import merchImage from '../merch.png';
+import { merch } from '../data/content.json'; // Assuming you have merch data
+
+const merchImages = {
+  "merch.png": require('../merch.png'),
+};
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3,
+      staggerChildren: 0.2,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
+  hidden: { scale: 0.5, opacity: 0 },
+  visible: { 
+    scale: 1, 
+    opacity: 1, 
+    transition: { 
+      type: 'spring', 
+      stiffness: 100,
+      damping: 10 
+    } 
+  },
 };
 
 const Merch = () => {
@@ -28,18 +40,21 @@ const Merch = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <motion.h2 variants={itemVariants} className={styles.title}>
-        Merch Coming Soon
-      </motion.h2>
-      <motion.div 
-        className={styles.merchContent}
-        variants={itemVariants}
-      >
-        <img
-          src={merchImage}
-          alt="FUTR Clan Merch Coming Soon"
-          className={styles.merchImage}
-        />
+      <motion.h2 variants={itemVariants}>GET THE KIT</motion.h2>
+      <motion.div className={styles.merchGrid} variants={containerVariants}>
+        {merch.map((item) => (
+          <motion.div
+            key={item.name}
+            className={styles.merchLink}
+            variants={itemVariants}
+          >
+            <img src={merchImages[item.image]} alt={`${item.name}`} className={styles.merchImage} />
+            <div className={styles.merchInfo}>
+              <h3 className={styles.merchName}>{item.name}</h3>
+              <p className={styles.merchPrice}>{item.price}</p>
+            </div>
+          </motion.div>
+        ))}
       </motion.div>
     </motion.section>
   );

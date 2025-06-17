@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
 import logo from '../logo.png';
@@ -9,11 +9,22 @@ const navLinks = [
   { to: "members", text: "The Lineup" },
   { to: "merch", text: "Merch" },
   { to: "brands", text: "Brands" },
-  { to: "contact", text: "Join" },
 ];
 
 const Header = () => {
-  const closeNav = () => {};
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const toggleNav = () => setIsNavOpen(!isNavOpen);
+  const closeNav = () => setIsNavOpen(false);
 
   return (
     <motion.header
@@ -27,24 +38,42 @@ const Header = () => {
       </div>
       <h1 className={styles.title}>FUTR</h1>
       <p className={styles.subtitle}>"The grind is real. The FUTR is earned."</p>
-      <nav className={styles.nav}>
+      <nav className={`${styles.nav} ${isNavOpen ? styles.navOpen : ''}`}>
         {navLinks.map(link => (
-          <motion.div key={link.to} className={styles.navLinkContainer}>
-            <Link
-              to={link.to}
-              smooth={true}
-              duration={500}
-              spy={true}
-              exact='true'
-              offset={-80}
-              onClick={closeNav}
-              className={styles.navLink}
-            >
-              {link.text}
-            </Link>
-          </motion.div>
+          <Link
+            key={link.to}
+            to={link.to}
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            offset={-80}
+            onClick={closeNav}
+            className={styles.navLink}
+          >
+            {link.text}
+          </Link>
         ))}
+        <Link
+          to="contact"
+          smooth={true}
+          duration={500}
+          spy={true}
+          exact='true'
+          offset={-80}
+          onClick={closeNav}
+          className={`${styles.navLink} ${styles.ctaLink}`}
+        >
+          Apply Now
+        </Link>
       </nav>
+      {isMobile && (
+        <button className={styles.hamburger} onClick={toggleNav} aria-label="Toggle navigation">
+          <span className={styles.bar}></span>
+          <span className={styles.bar}></span>
+          <span className={styles.bar}></span>
+        </button>
+      )}
     </motion.header>
   );
 };

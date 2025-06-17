@@ -1,18 +1,18 @@
 .footer {
     text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
+    padding: var(--space-xl) var(--space-md);
+    margin-top: var(--space-xxl);
     border-top: 1px solid var(--border-color);
     font-size: 0.9rem;
-    color: var(--text-color);
+    color: var(--text-secondary);
 }
 
 .socialIcons {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    font-size: 1.75rem;
 }
 
 .socialIcons a {
@@ -21,6 +21,6 @@
 }
 
 .socialIcons a:hover {
-    color: var(--accent-color);
-    transform: translateY(-5px);
+    color: var(--primary-color);
+    transform: translateY(-4px);
 } 

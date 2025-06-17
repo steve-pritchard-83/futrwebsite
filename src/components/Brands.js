@@ -1,13 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './Brands.module.css';
-import razerLogo from '../razer.png';
-import attackSharkLogo from '../attack-shark-seeklogo.png';
+import { brands } from '../data/content.json';
 
-const brands = [
-  { name: 'Razer', logo: razerLogo, url: 'https://www.razer.com' },
-  { name: 'Attack Shark', logo: attackSharkLogo, url: 'https://www.attackshark.com' },
-];
+const brandLogos = {
+  "razer.png": require('../razer.png'),
+  "attack-shark-seeklogo.png": require('../attack-shark-seeklogo.png')
+};
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -21,7 +20,15 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { scale: 0.5, opacity: 0 },
-  visible: { scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 120 } },
+  visible: { 
+    scale: 1, 
+    opacity: 1, 
+    transition: { 
+      type: 'spring', 
+      stiffness: 100,
+      damping: 10 
+    } 
+  },
 };
 
 const Brands = () => {
@@ -34,21 +41,19 @@ const Brands = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <motion.h2 variants={itemVariants} className={styles.title}>Trusted by FUTR</motion.h2>
+      <motion.h2 variants={itemVariants}>TRUSTED BY THE BEST</motion.h2>
       <motion.div className={styles.brandsGrid} variants={containerVariants}>
         {brands.map((brand) => (
-          <motion.div
+          <motion.a
             key={brand.name}
-            className={styles.brandCard}
+            href={brand.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.brandLink}
             variants={itemVariants}
           >
-            <a href={brand.url} target="_blank" rel="noopener noreferrer">
-              <img src={brand.logo} alt={brand.name} className={styles.logo} />
-            </a>
-            <a href={brand.url} target="_blank" rel="noopener noreferrer" className={styles.brandLink}>
-              Visit {brand.name}
-            </a>
-          </motion.div>
+            <img src={brandLogos[brand.logo]} alt={`${brand.name} logo`} className={styles.brandLogo} />
+          </motion.a>
         ))}
       </motion.div>
     </motion.section>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowUp } from 'react-icons/fa';
 import styles from './BackToTopButton.module.css';
 
@@ -28,13 +29,22 @@ const BackToTopButton = () => {
   }, []);
 
   return (
-    <div className={styles.backToTop}>
+    <AnimatePresence>
       {isVisible && (
-        <button onClick={scrollToTop} className={styles.button}>
+        <motion.button
+          onClick={scrollToTop}
+          className={styles.button}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+          transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+          whileHover={{ scale: 1.1, backgroundColor: 'var(--light-color)', color: 'var(--dark-bg)' }}
+          whileTap={{ scale: 0.9 }}
+        >
           <FaArrowUp />
-        </button>
+        </motion.button>
       )}
-    </div>
+    </AnimatePresence>
   );
 };
 

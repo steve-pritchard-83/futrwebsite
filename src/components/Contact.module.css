@@ -1,61 +1,64 @@
 .description {
   max-width: 600px;
-  margin: 0 auto 2rem auto;
+  margin: 0 auto var(--space-xl) auto;
   text-align: center;
+  color: var(--text-secondary);
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
   max-width: 600px;
-  margin: 1rem auto;
+  margin: var(--space-lg) auto 0;
 }
 
 .formGroup {
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-lg);
 }
 
 .formInput {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  padding: 1rem;
+  background: rgba(10, 15, 26, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: var(--space-md);
   color: var(--light-color);
   font-size: 1rem;
   width: 100%;
   box-sizing: border-box;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, background-color 0.3s;
 }
 
 .formLabel {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  color: var(--text-color);
+  top: var(--space-md);
+  left: var(--space-md);
+  color: var(--text-secondary);
   pointer-events: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease-in-out;
+  background-color: transparent;
+  padding: 0 var(--space-xs);
 }
 
 .formInput:focus + .formLabel,
 .formInput:not(:placeholder-shown) + .formLabel {
-  top: -0.75rem;
+  top: -0.6rem;
   left: 0.75rem;
   font-size: 0.85rem;
   color: var(--primary-color);
-  background: #1a1a2e; /* Match this to your dark background */
-  padding: 0 0.25rem;
+  background-color: var(--dark-bg);
 }
 
 .formInput:focus {
   outline: none;
   border-color: var(--primary-color);
+  background-color: rgba(10, 15, 26, 0.8);
 }
 
 .recaptchaContainer {
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-lg);
 }
 
 .errorText {
@@ -77,10 +80,38 @@ form {
 .buttonWrapper {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: var(--space-md);
 }
 
 .submitButton {
-  /* This class is no longer used by the Button component, but we'll clear it just in case */
-  /* Styles are now controlled by the reusable Button.module.css */
+  padding: var(--space-md) var(--space-xl);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dark-bg);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: var(--light-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow-color);
+}
+
+.submitButton:disabled {
+  background-color: var(--text-secondary);
+  color: var(--dark-bg);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.status {
+  text-align: center;
+  margin-top: var(--space-lg);
+  color: var(--primary-color);
+  font-weight: 500;
 } 

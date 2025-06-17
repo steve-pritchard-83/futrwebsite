@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useScroll } from 'framer-motion';
 import './App.css';
@@ -7,15 +7,21 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import Cursor from './Cursor';
 import Header from './components/Header';
-import About from './components/About';
-import Members from './components/Members';
-import Merch from './components/Merch';
-import Brands from './components/Brands';
-// import Media from './components/Media';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTopButton from './components/BackToTopButton';
 import FloatingClouds from './components/FloatingClouds';
+
+const About = React.lazy(() => import('./components/About'));
+const Members = React.lazy(() => import('./components/Members'));
+const Merch = React.lazy(() => import('./components/Merch'));
+const Brands = React.lazy(() => import('./components/Brands'));
+const Contact = React.lazy(() => import('./components/Contact'));
+
+const LoadingFallback = () => (
+  <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div className="loader"></div>
+  </div>
+);
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -32,11 +38,13 @@ function App() {
         <FloatingClouds scrollYProgress={scrollYProgress} />
         <Header />
         <main>
-          <About />
-          <Members />
-          <Merch />
-          <Brands />
-          <Contact />
+          <Suspense fallback={<LoadingFallback />}>
+            <About />
+            <Members />
+            <Merch />
+            <Brands />
+            <Contact />
+          </Suspense>
         </main>
         <Footer />
         <BackToTopButton />
