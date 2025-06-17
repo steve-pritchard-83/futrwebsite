@@ -11,58 +11,8 @@
   }
 }
 
-.brandCard {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: transform 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.brandCard:hover {
-    transform: translateY(-5px);
-}
-
-@keyframes pulse-glow {
-  0% {
-    filter: grayscale(30%) drop-shadow(0 0 10px rgba(0, 255, 255, 0.4));
-  }
-  50% {
-    filter: grayscale(10%) drop-shadow(0 0 25px var(--accent-color));
-  }
-  100% {
-    filter: grayscale(30%) drop-shadow(0 0 10px rgba(0, 255, 255, 0.4));
-  }
-}
-
-.logo {
-  max-height: 100px;
-  max-width: 220px;
-  margin-bottom: 1.5rem;
-  animation: pulse-glow 2.5s infinite ease-in-out;
-  transition: transform 0.3s ease;
-}
-
-.brandCard:hover .logo {
-    animation-play-state: paused;
-    filter: grayscale(0%) drop-shadow(0 0 25px var(--accent-color));
-}
-
-.title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #fff;
-  font-family: 'Orbitron', sans-serif;
-  text-transform: uppercase;
-  text-align: center;
-}
-
 .brandLink {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,6 +22,8 @@
     border: 1px solid var(--border-color);
     min-height: 200px;
     transition: all 0.3s ease;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .brandLink:hover {
@@ -82,11 +34,13 @@
 }
 
 .brandLogo {
+  position: relative;
   max-height: 120px;
   max-width: 320px;
   filter: grayscale(80%) brightness(0.8);
   opacity: 0.7;
   transition: all 0.3s ease;
+  z-index: 2;
 }
 
 .brandLink:hover .brandLogo {
