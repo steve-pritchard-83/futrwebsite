@@ -2,13 +2,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaFortAwesome } from 'react-icons/fa';
 import styles from './Members.module.css';
+import callumImage from '../callum.png';
+import juddImage from '../judd.png';
+import finnImage from '../finn.png';
+import liamImage from '../liam.png';
 // import PlayerStats from './PlayerStats';
 
 const members = [
-  { name: 'Callum', username: 'fUTR jamsyfv', trackerUrl: 'https://fortnitetracker.com/profile/all/jamsyfv' },
-  { name: 'Judd', username: 'Stoneagelover', trackerUrl: 'https://fortnitetracker.com/profile/all/Stoneagelover' },
-  { name: 'Finn', username: 'ꜰᴜᴛʀ F3IN', trackerUrl: 'https://fortnitetracker.com/profile/all/%ea%9c%b0%e1%b4%9c%e1%b4%9b%ca%80%20F3IN' },
-  { name: 'Wihan', username: 'futr RYZ', trackerUrl: null },
+  { name: 'Callum', username: 'fUTR jamsyfv', trackerUrl: 'https://fortnitetracker.com/profile/all/jamsyfv', image: callumImage },
+  { name: 'Judd', username: 'Stoneagelover', trackerUrl: 'https://fortnitetracker.com/profile/all/Stoneagelover', image: juddImage },
+  { name: 'Finn', username: 'ꜰᴜᴛʀ F3IN', trackerUrl: 'https://fortnitetracker.com/profile/all/%ea%9c%b0%e1%b4%9c%e1%b4%9b%ca%80%20F3IN', image: finnImage },
+  { name: 'Liam', username: 'Liamos_34', trackerUrl: 'https://fortnitetracker.com/profile/all/Liamos_34', image: liamImage },
 ];
 
 const containerVariants = {
@@ -45,6 +49,7 @@ const Members = () => {
             variants={itemVariants}
           >
             <h3 className={styles.memberName}>{member.name}</h3>
+            <img src={member.image} alt={member.name} className={styles.memberImage} />
             <p className={styles.memberUsername}>@{member.username}</p>
             {/* <PlayerStats username={member.username} /> */}
             {member.trackerUrl ? (

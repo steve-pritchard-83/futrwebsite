@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaUsers, FaBullseye, FaHandshake } from 'react-icons/fa';
 import styles from './About.module.css';
+import groupImage from '../group.png';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,9 +30,15 @@ const About = () => {
       animate="visible"
     >
       <motion.h2 variants={itemVariants}>FORGED IN THE STORM</motion.h2>
-      <motion.p className={styles.intro} variants={itemVariants}>
-      <p>"We are FUTR. Not a clan. A contract. Signed in dropped crowns and midnight queues. We don't log on — we clock in. We warm up before school, VOD review after dinner, and we're still running sets while the world sleeps. This isn't casual. This is comp. Every ping matters. Every death gets dissected. The grind is real. The FUTR is earned."</p>
+      <motion.p
+        className={styles.intro}
+        variants={itemVariants}
+      >
+        "We are FUTR. Not a clan. A contract. Signed in dropped crowns and midnight queues. We don't log on — we clock in. We warm up before school, VOD review after dinner, and we're still running sets while the world sleeps. This isn't casual. This is comp. Every ping matters. Every death gets dissected. The grind is real. The FUTR is earned."
       </motion.p>
+      <motion.div className={styles.imageContainer} variants={itemVariants}>
+        <img src={groupImage} alt="FUTR Clan" className={styles.groupImage} />
+      </motion.div>
       <motion.div className={styles.philosophyGrid} variants={containerVariants}>
         <motion.div className={styles.philosophyItem} variants={itemVariants}>
           <FaUsers size={40} />
