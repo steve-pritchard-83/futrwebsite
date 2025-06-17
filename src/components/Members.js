@@ -4,11 +4,16 @@ import { FaFortAwesome } from 'react-icons/fa';
 import styles from './Members.module.css';
 import { members } from '../data/content.json';
 
+import callumImage from '../callum.png';
+import juddImage from '../judd.png';
+import finnImage from '../finn.png';
+import liamImage from '../liam.png';
+
 const memberImages = {
-  "callum.png": require('../callum.png'),
-  "judd.png": require('../judd.png'),
-  "finn.png": require('../finn.png'),
-  "liam.png": require('../liam.png')
+  "callum.png": callumImage,
+  "judd.png": juddImage,
+  "finn.png": finnImage,
+  "liam.png": liamImage
 };
 
 const containerVariants = {
