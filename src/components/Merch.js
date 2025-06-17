@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import styles from './Merch.module.css';
 import { merch } from '../data/content.json'; // Assuming you have merch data
 
+import merchImage from '../merch.png';
+
 const merchImages = {
-  "merch.png": require('../merch.png'),
+  "merch.png": merchImage,
 };
 
 const containerVariants = {

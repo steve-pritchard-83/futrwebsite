@@ -3,9 +3,12 @@ import { motion } from 'framer-motion';
 import styles from './Brands.module.css';
 import { brands } from '../data/content.json';
 
-const brandLogos = {
-  "razer.png": require('../razer.png'),
-  "attack-shark-seeklogo.png": require('../attack-shark-seeklogo.png')
+import razerImage from '../razer.png';
+import attackSharkImage from '../attack-shark-seeklogo.png';
+
+const brandImages = {
+  "razer.png": razerImage,
+  "attack-shark-seeklogo.png": attackSharkImage
 };
 
 const containerVariants = {
@@ -52,7 +55,7 @@ const Brands = () => {
             className={styles.brandLink}
             variants={itemVariants}
           >
-            <img src={brandLogos[brand.logo]} alt={`${brand.name} logo`} className={styles.brandLogo} />
+            <img src={brandImages[brand.logo]} alt={`${brand.name} logo`} className={styles.brandLogo} />
           </motion.a>
         ))}
       </motion.div>
@@ -60,4 +63,4 @@ const Brands = () => {
   );
 };
 
-export default Brands; 
+export default Brands;
