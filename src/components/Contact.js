@@ -27,37 +27,48 @@ const Contact = () => {
         }
     }
 
-    const sendEmail = (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
+const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-        const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-        const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-        if (!serviceID || !templateID || !publicKey) {
-            console.error("EmailJS environment variables are not set. Please check your .env file.");
-            alert("Email service is not configured correctly. Please contact the administrator.");
+    // Define the G'dayPulse endpoint
+    const gdayPulseEndpoint = 'https://gdaypulse.vercel.app/api/contact-submissions';
+
+    if (!serviceID || !templateID || !publicKey) {
+        console.error("EmailJS environment variables are not set. Please check your .env file.");
+        alert("Email service is not configured correctly. Please contact the administrator.");
+        setIsSubmitting(false);
+        return;
+    }
+
+    emailjs.sendForm(serviceID, templateID, form.current, publicKey)
+        .then((result) => {
+            console.log('SUCCESS!', result.status, result.text);
             setIsSubmitting(false);
-            return;
-        }
+            setSubmitStatus('Message sent successfully!');
 
-        emailjs.sendForm(serviceID, templateID, form.current, publicKey)
-            .then((result) => {
-                console.log('SUCCESS!', result.status, result.text);
-                setIsSubmitting(false);
-                setSubmitStatus('Message sent successfully!');
-            }, (error) => {
-                console.error('FAILED...', error);
-                alert(`Failed to send message. Error: ${error.text || 'Unknown error'}`);
-                setIsSubmitting(false);
-            });
-        e.target.reset();
-        if (recaptchaRef.current) {
-            recaptchaRef.current.reset();
-        }
-        setRecaptchaToken(null);
-    };
+            // --- THIS IS THE NEW CODE TO NOTIFY G'DAYPULSE ---
+            fetch(gdayPulseEndpoint, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => console.log('GdayPulse OKR updated:', data))
+                .catch(error => console.error('Error updating GdayPulse OKR:', error));
+            // --- END OF NEW CODE ---
+
+        }, (error) => {
+            console.error('FAILED...', error);
+            alert(`Failed to send message. Error: ${error.text || 'Unknown error'}`);
+            setIsSubmitting(false);
+        });
+    e.target.reset();
+    if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+    }
+    setRecaptchaToken(null);
+};
 
     return (
         <motion.section
