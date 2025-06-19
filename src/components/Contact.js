@@ -35,7 +35,7 @@ const sendEmail = (e) => {
     const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    // Define the G'dayPulse endpoint
+    // --- Ensure this points to your LIVE Vercel URL ---
     const gdayPulseEndpoint = 'https://gdaypulse.vercel.app/api/contact-submissions';
 
     if (!serviceID || !templateID || !publicKey) {
@@ -51,12 +51,11 @@ const sendEmail = (e) => {
             setIsSubmitting(false);
             setSubmitStatus('Message sent successfully!');
 
-            // --- THIS IS THE NEW CODE TO NOTIFY G'DAYPULSE ---
+            // --- Notifies your LIVE G'dayPulse server ---
             fetch(gdayPulseEndpoint, { method: 'POST' })
                 .then(response => response.json())
                 .then(data => console.log('GdayPulse OKR updated:', data))
                 .catch(error => console.error('Error updating GdayPulse OKR:', error));
-            // --- END OF NEW CODE ---
 
         }, (error) => {
             console.error('FAILED...', error);
@@ -69,7 +68,6 @@ const sendEmail = (e) => {
     }
     setRecaptchaToken(null);
 };
-
     return (
         <motion.section
             id="contact"
