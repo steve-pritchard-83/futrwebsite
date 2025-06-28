@@ -46,7 +46,7 @@ const Brands = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <motion.h2 variants={itemVariants}>TRUSTED BY THE BEST</motion.h2>
+      <motion.h2 variants={itemVariants}>OUR ARSENAL</motion.h2>
       <motion.div className={styles.brandsGrid} variants={containerVariants}>
         {brands.map((brand, index) => (
           <motion.div
@@ -61,6 +61,10 @@ const Brands = () => {
               className={styles.brandLink}
             >
               <img src={logoMap[brand.logo]} alt={`${brand.name} logo`} className={styles.brandLogo} />
+              <div className={styles.brandInfo}>
+                <h3 className={styles.brandName}>{brand.name}</h3>
+                <p className={styles.brandTagline}>{brand.tagline}</p>
+              </div>
             </a>
           </motion.div>
         ))}
