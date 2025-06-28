@@ -1,10 +1,30 @@
 .footer {
+    padding: var(--space-xl) 0;
     text-align: center;
-    padding: var(--space-xl) var(--space-md);
-    margin-top: var(--space-xxl);
     border-top: 1px solid var(--border-color);
+    margin-top: var(--space-xxl);
     font-size: 0.9rem;
     color: var(--text-secondary);
+}
+
+.navLinks {
+    margin-bottom: var(--space-lg);
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.navLink {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.navLink:hover {
+    color: var(--primary-color);
 }
 
 .socialIcons {

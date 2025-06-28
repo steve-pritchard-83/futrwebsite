@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import BackToTopButton from './components/BackToTopButton';
 import FloatingClouds from './components/FloatingClouds';
 import About from './components/About';
+import Divider from './components/Divider';
 
 const Members = lazy(() => import('./components/Members'));
 const Merch = lazy(() => import('./components/Merch'));
@@ -39,10 +40,14 @@ function App() {
         <Header />
         <main>
           <About />
+          <Divider />
           <Suspense fallback={<LoadingFallback />}>
             <Members />
+            <Divider />
             <Merch />
+            <Divider />
             <Brands />
+            <Divider />
             <Contact />
           </Suspense>
         </main>

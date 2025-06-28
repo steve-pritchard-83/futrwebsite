@@ -35,12 +35,14 @@
     {
       "name": "Razer",
       "logo": "razer.webp",
-      "url": "https://www.razer.com"
+      "url": "https://www.razer.com",
+      "tagline": "For Gamers. By Gamers."
     },
     {
       "name": "Attack Shark",
       "logo": "attack-shark-seeklogo.webp",
-      "url": "https://www.attackshark.com"
+      "url": "https://www.attackshark.com",
+      "tagline": "The Unfair Advantage."
     }
   ],
   "merch": [
