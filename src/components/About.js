@@ -22,30 +22,14 @@ const itemVariants = {
 
 const About = () => {
   return (
-    <motion.section
-      id="about"
-      className="glass-container"
-    >
-      <motion.h2
-        variants={itemVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.8 }}
-      >
-        FORGED IN THE STORM
-      </motion.h2>
+    <section id="about" className="glass-container">
+      <h2>FORGED IN THE STORM</h2>
       <p className={styles.intro}>
         "We are FUTR. Not a clan. A contract. Signed in dropped crowns and midnight queues. We don't log on — we clock in. We warm up before school, VOD review after dinner, and we're still running sets while the world sleeps. This isn't casual. This is comp. Every ping matters. Every death gets dissected. The grind is real. The FUTR is earned."
       </p>
-      <motion.div
-        className={styles.imageContainer}
-        variants={itemVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-      >
+      <div className={styles.imageContainer}>
         <img src={groupImage} alt="FUTR Clan" className={styles.groupImage} />
-      </motion.div>
+      </div>
       <motion.div
         className={styles.philosophyGrid}
         variants={containerVariants}
@@ -69,7 +53,7 @@ const About = () => {
           <p>It's bigger than Fortnite. We show up for each other on bad games and bad days. We hold each other accountable and hype each other up. Win or lose, the squad stays locked.</p>
         </motion.div>
       </motion.div>
-    </motion.section>
+    </section>
   );
 };
 
