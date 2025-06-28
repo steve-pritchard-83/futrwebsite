@@ -25,18 +25,34 @@ const About = () => {
     <motion.section
       id="about"
       className="glass-container"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
     >
-      <motion.h2 variants={itemVariants}>FORGED IN THE STORM</motion.h2>
+      <motion.h2
+        variants={itemVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.8 }}
+      >
+        FORGED IN THE STORM
+      </motion.h2>
       <p className={styles.intro}>
         "We are FUTR. Not a clan. A contract. Signed in dropped crowns and midnight queues. We don't log on — we clock in. We warm up before school, VOD review after dinner, and we're still running sets while the world sleeps. This isn't casual. This is comp. Every ping matters. Every death gets dissected. The grind is real. The FUTR is earned."
       </p>
-      <motion.div className={styles.imageContainer} variants={itemVariants}>
+      <motion.div
+        className={styles.imageContainer}
+        variants={itemVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+      >
         <img src={groupImage} alt="FUTR Clan" className={styles.groupImage} />
       </motion.div>
-      <motion.div className={styles.philosophyGrid} variants={containerVariants}>
+      <motion.div
+        className={styles.philosophyGrid}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <motion.div className={styles.philosophyItem} variants={itemVariants}>
           <FaUsers size={40} />
           <h3>Unbreakable Teamwork</h3>

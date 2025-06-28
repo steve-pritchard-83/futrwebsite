@@ -10,15 +10,30 @@
       content="The official website for FUTR, a professional Fortnite competitive clan."
     />
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZD5887XN7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script>
+      function loadGtag() {
+        const script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-0ZD5887XN7';
+        script.async = true;
+        document.head.appendChild(script);
 
-  gtag('config', 'G-0ZD5887XN7');
-</script>
+        script.onload = () => {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0ZD5887XN7');
+        };
+      }
+
+      // Load Gtag on first user interaction
+      const events = ['scroll', 'mousedown', 'touchstart', 'keydown'];
+      function triggerLoad() {
+        loadGtag();
+        events.forEach(e => window.removeEventListener(e, triggerLoad, { once: true }));
+      }
+      events.forEach(e => window.addEventListener(e, triggerLoad, { once: true }));
+    </script>
+
     <link rel="apple-touch-icon" href="/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
