@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useScroll } from 'framer-motion';
 import './App.css';
@@ -10,12 +10,12 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import BackToTopButton from './components/BackToTopButton';
 import FloatingClouds from './components/FloatingClouds';
+import About from './components/About';
 
-const About = React.lazy(() => import('./components/About'));
-const Members = React.lazy(() => import('./components/Members'));
-const Merch = React.lazy(() => import('./components/Merch'));
-const Brands = React.lazy(() => import('./components/Brands'));
-const Contact = React.lazy(() => import('./components/Contact'));
+const Members = lazy(() => import('./components/Members'));
+const Merch = lazy(() => import('./components/Merch'));
+const Brands = lazy(() => import('./components/Brands'));
+const Contact = lazy(() => import('./components/Contact'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -38,8 +38,8 @@ function App() {
         <FloatingClouds scrollYProgress={scrollYProgress} />
         <Header />
         <main>
+          <About />
           <Suspense fallback={<LoadingFallback />}>
-            <About />
             <Members />
             <Merch />
             <Brands />
