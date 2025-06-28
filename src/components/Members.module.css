@@ -12,46 +12,72 @@
 }
 
 .memberCard {
-    background: rgba(15, 23, 42, 0.4);
-    padding: var(--space-xl);
+    position: relative;
     border-radius: 16px;
-    text-align: center;
+    overflow: hidden;
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 400px;
+    display: flex;
+    align-items: flex-end;
 }
 
 .memberCard:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 169, 255, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 169, 255, 0.2);
+}
+
+.imageContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .memberImage {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: 50% 20%;
-    margin: var(--space-md) auto;
-    border: 3px solid var(--primary-color);
-    box-shadow: 0 0 15px var(--shadow-color);
+    transition: transform 0.4s ease;
 }
 
-.memberName {
-    margin-top: var(--space-lg);
+.memberCard:hover .memberImage {
+    transform: scale(1.1);
+}
+
+.memberInfo {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-xl);
+    width: 100%;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 20%, rgba(15, 23, 42, 0));
+    text-align: left;
+    transition: background 0.3s ease;
+}
+
+.memberCard h3 {
+    margin-top: 0;
     margin-bottom: var(--space-xs);
     font-size: 1.75rem;
     font-family: 'Orbitron', sans-serif;
     color: var(--light-color);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
-.memberUsername {
-    margin: var(--space-xs) 0 var(--space-lg) 0;
+.username {
+    margin: 0 0 var(--space-md) 0;
     font-size: 1rem;
     color: var(--text-secondary);
     font-style: normal;
+    transition: color 0.3s ease;
+}
+
+.memberCard:hover .username {
+    color: var(--light-color);
 }
 
 .statsLink {
