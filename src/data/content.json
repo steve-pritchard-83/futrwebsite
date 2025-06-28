@@ -3,37 +3,43 @@
     {
       "name": "Callum",
       "username": "fUTR jamsyfv",
-      "trackerUrl": "https://fortnitetracker.com/profile/all/jamsyfv",
-      "image": "callum.png"
-    },
-    {
-      "name": "Judd",
-      "username": "Stoneagelover",
-      "trackerUrl": "https://fortnitetracker.com/profile/all/Stoneagelover",
-      "image": "judd.png"
+      "trackerUrl": "https://fortnitetracker.com/profile/all/%e1%b6%a0%e1%b5%81%e1%b5%80%e1%b4%bf%20%ca%b2%e1%b5%83%e1%b5%90%cb%a2%ca%b8%e1%b6%a0%e1%b5%9b",
+      "image": "callum.webp"
     },
     {
       "name": "Finn",
       "username": "ꜰᴜᴛʀ F3IN",
       "trackerUrl": "https://fortnitetracker.com/profile/all/%ea%9c%b0%e1%b4%9c%e1%b4%9b%ca%80%20F3IN",
-      "image": "finn.png"
+      "image": "finn.webp"
+    },
+    {
+      "name": "Judd",
+      "username": "Stoneagelover",
+      "trackerUrl": "https://fortnitetracker.com/profile/all/Stoneagelover",
+      "image": "judd.webp"
     },
     {
       "name": "Liam",
       "username": "Liamos_34",
       "trackerUrl": "https://fortnitetracker.com/profile/all/Liamos_34",
-      "image": "liam.png"
+      "image": "liam.webp"
+    },
+    {
+      "name": "Tom",
+      "username": "Chedsy07",
+      "trackerUrl": "https://fortnitetracker.com/profile/all/Chedsy07",
+      "image": "tom.webp"
     }
   ],
   "brands": [
     {
       "name": "Razer",
-      "logo": "razer.png",
+      "logo": "razer.webp",
       "url": "https://www.razer.com"
     },
     {
       "name": "Attack Shark",
-      "logo": "attack-shark-seeklogo.png",
+      "logo": "attack-shark-seeklogo.webp",
       "url": "https://www.attackshark.com"
     }
   ],
@@ -41,7 +47,7 @@
     { 
       "name": "FUTR Signature Hoodie", 
       "price": "Coming Soon",
-      "image": "merch.png",
+      "image": "merch.webp",
       "url": "#"
     }
   ]

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
-import logo from '../logo.png';
+import logo from '../logo.webp';
 import styles from './Header.module.css';
 
 const navLinks = [
   { to: "about", text: "About" },
-  { to: "members", text: "The Lineup" },
+  { to: "members", text: "Team" },
   { to: "merch", text: "Merch" },
   { to: "brands", text: "Brands" },
 ];

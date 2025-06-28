@@ -3,39 +3,28 @@ import { motion } from 'framer-motion';
 import styles from './Merch.module.css';
 import { merch } from '../data/content.json'; // Assuming you have merch data
 
-import merchImage from '../merch.png';
+// Manually import all merch images
+import merchImage from '../merch.webp';
 
-const merchImages = {
-  "merch.png": merchImage,
+// Create a mapping from the image filename to the imported module
+const imageMap = {
+  'merch.webp': merchImage,
 };
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
 };
 
 const itemVariants = {
-  hidden: { scale: 0.5, opacity: 0 },
-  visible: { 
-    scale: 1, 
-    opacity: 1, 
-    transition: { 
-      type: 'spring', 
-      stiffness: 100,
-      damping: 10 
-    } 
-  },
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
 };
 
 const Merch = () => {
   return (
-    <motion.section 
-      id="merch" 
+    <motion.section
+      id="merch"
       className="glass-container"
       variants={containerVariants}
       initial="hidden"
@@ -44,13 +33,13 @@ const Merch = () => {
     >
       <motion.h2 variants={itemVariants}>GET THE KIT</motion.h2>
       <motion.div className={styles.merchGrid} variants={containerVariants}>
-        {merch.map((item) => (
+        {merch.map((item, index) => (
           <motion.div
-            key={item.name}
+            key={index}
             className={styles.merchLink}
             variants={itemVariants}
           >
-            <img src={merchImages[item.image]} alt={`${item.name}`} className={styles.merchImage} />
+            <img src={imageMap[item.image]} alt={item.name} className={styles.merchImage} />
             <div className={styles.merchInfo}>
               <h3 className={styles.merchName}>{item.name}</h3>
               <p className={styles.merchPrice}>{item.price}</p>

@@ -3,12 +3,14 @@ import { motion } from 'framer-motion';
 import styles from './Brands.module.css';
 import { brands } from '../data/content.json';
 
-import razerImage from '../razer.png';
-import attackSharkImage from '../attack-shark-seeklogo.png';
+// Manually import all brand logos
+import razerLogo from '../razer.webp';
+import attackSharkLogo from '../attack-shark-seeklogo.webp';
 
-const brandImages = {
-  "razer.png": razerImage,
-  "attack-shark-seeklogo.png": attackSharkImage
+// Create a mapping from the image filename to the imported module
+const logoMap = {
+  'razer.webp': razerLogo,
+  'attack-shark-seeklogo.webp': attackSharkLogo,
 };
 
 const containerVariants = {
@@ -46,17 +48,21 @@ const Brands = () => {
     >
       <motion.h2 variants={itemVariants}>TRUSTED BY THE BEST</motion.h2>
       <motion.div className={styles.brandsGrid} variants={containerVariants}>
-        {brands.map((brand) => (
-          <motion.a
-            key={brand.name}
-            href={brand.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.brandLink}
+        {brands.map((brand, index) => (
+          <motion.div
+            key={index}
+            className={styles.brandItem}
             variants={itemVariants}
           >
-            <img src={brandImages[brand.logo]} alt={`${brand.name} logo`} className={styles.brandLogo} />
-          </motion.a>
+            <a
+              href={brand.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.brandLink}
+            >
+              <img src={logoMap[brand.logo]} alt={`${brand.name} logo`} className={styles.brandLogo} />
+            </a>
+          </motion.div>
         ))}
       </motion.div>
     </motion.section>

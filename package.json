@@ -21,7 +21,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "vite --open",
+    "start": "vite",
     "build": "vite build",
     "serve": "vite preview",
     "postbuild": "node ./scripts/sitemap-generator.js",

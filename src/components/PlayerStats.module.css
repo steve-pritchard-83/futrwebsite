@@ -47,4 +47,30 @@
 
 .error a:hover {
     text-decoration: none;
+}
+
+.statsLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    margin-top: var(--space-md);
+}
+
+.statsLink:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--shadow-color);
+}
+
+.noLink {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: var(--space-md);
 } 

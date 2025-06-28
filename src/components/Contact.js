@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import ReCAPTCHA from 'react-google-recaptcha';
 import styles from './Contact.module.css';
+
+const ReCAPTCHA = lazy(() => import('react-google-recaptcha'));
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -20,6 +21,7 @@ const Contact = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
     const [recaptchaToken, setRecaptchaToken] = useState(null);
+    const [loadRecaptcha, setLoadRecaptcha] = useState(false);
 
     function handleCaptchaChange(value) {
         if (value) {
@@ -27,47 +29,52 @@ const Contact = () => {
         }
     }
 
-const sendEmail = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+    const handleFocus = () => {
+        setLoadRecaptcha(true);
+    };
 
-    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const sendEmail = (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
 
-    // --- Ensure this points to your LIVE Vercel URL ---
-    const gdayPulseEndpoint = 'https://gdaypulse.vercel.app/api/contact-submissions';
+        const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    if (!serviceID || !templateID || !publicKey) {
-        console.error("EmailJS environment variables are not set. Please check your .env file.");
-        alert("Email service is not configured correctly. Please contact the administrator.");
-        setIsSubmitting(false);
-        return;
-    }
+        // --- Ensure this points to your LIVE Vercel URL ---
+        const gdayPulseEndpoint = 'https://gdaypulse.vercel.app/api/contact-submissions';
 
-    emailjs.sendForm(serviceID, templateID, form.current, publicKey)
-        .then((result) => {
-            console.log('SUCCESS!', result.status, result.text);
+        if (!serviceID || !templateID || !publicKey) {
+            console.error("EmailJS environment variables are not set. Please check your .env file.");
+            alert("Email service is not configured correctly. Please contact the administrator.");
             setIsSubmitting(false);
-            setSubmitStatus('Message sent successfully!');
+            return;
+        }
 
-            // --- Notifies your LIVE G'dayPulse server ---
-            fetch(gdayPulseEndpoint, { method: 'POST' })
-                .then(response => response.json())
-                .then(data => console.log('GdayPulse OKR updated:', data))
-                .catch(error => console.error('Error updating GdayPulse OKR:', error));
+        emailjs.sendForm(serviceID, templateID, form.current, publicKey)
+            .then((result) => {
+                console.log('SUCCESS!', result.status, result.text);
+                setIsSubmitting(false);
+                setSubmitStatus('Message sent successfully!');
 
-        }, (error) => {
-            console.error('FAILED...', error);
-            alert(`Failed to send message. Error: ${error.text || 'Unknown error'}`);
-            setIsSubmitting(false);
-        });
-    e.target.reset();
-    if (recaptchaRef.current) {
-        recaptchaRef.current.reset();
-    }
-    setRecaptchaToken(null);
-};
+                // --- Notifies your LIVE G'dayPulse server ---
+                fetch(gdayPulseEndpoint, { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => console.log('GdayPulse OKR updated:', data))
+                    .catch(error => console.error('Error updating GdayPulse OKR:', error));
+
+            }, (error) => {
+                console.error('FAILED...', error);
+                alert(`Failed to send message. Error: ${error.text || 'Unknown error'}`);
+                setIsSubmitting(false);
+            });
+        e.target.reset();
+        if (recaptchaRef.current) {
+            recaptchaRef.current.reset();
+        }
+        setRecaptchaToken(null);
+    };
+
     return (
         <motion.section
             id="contact"
@@ -81,7 +88,7 @@ const sendEmail = (e) => {
             <motion.p variants={itemVariants} className={styles.description}>
                 The FUTR is built, not given. If you've got the drive and the dream, we want to hear from you. Show us you belong here.
             </motion.p>
-            <motion.form ref={form} onSubmit={sendEmail} variants={itemVariants} className={styles.form}>
+            <motion.form ref={form} onSubmit={sendEmail} variants={itemVariants} className={styles.form} onFocus={handleFocus}>
                 <div className={styles.formGroup}>
                     <input type="text" name="from_name" placeholder=" " required className={styles.formInput} />
                     <label htmlFor="from_name" className={styles.formLabel}>Your In-Game Name</label>
@@ -94,14 +101,18 @@ const sendEmail = (e) => {
                     <textarea name="message" rows="5" placeholder=" " required className={styles.formInput}></textarea>
                     <label htmlFor="message" className={styles.formLabel}>Tell us your story. Why FUTR?</label>
                 </div>
-                <div className={styles.recaptchaContainer}>
-                    <ReCAPTCHA
-                        ref={recaptchaRef}
-                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                        onChange={handleCaptchaChange}
-                        theme="dark"
-                    />
-                </div>
+                {loadRecaptcha && (
+                    <Suspense fallback={<div className={styles.recaptchaLoading}>Loading...</div>}>
+                        <div className={styles.recaptchaContainer}>
+                            <ReCAPTCHA
+                                ref={recaptchaRef}
+                                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                                onChange={handleCaptchaChange}
+                                theme="dark"
+                            />
+                        </div>
+                    </Suspense>
+                )}
                 <div className={styles.buttonWrapper}>
                     <button type="submit" disabled={isSubmitting || !recaptchaToken} className={styles.submitButton}>
                         {isSubmitting ? 'Sending...' : 'Send Message'}

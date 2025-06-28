@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaFortAwesome } from 'react-icons/fa';
 import styles from './Members.module.css';
 import { members } from '../data/content.json';
+import PlayerStats from './PlayerStats';
 
-import callumImage from '../callum.png';
-import juddImage from '../judd.png';
-import finnImage from '../finn.png';
-import liamImage from '../liam.png';
+// Manually import all member images
+import callumImage from '../callum.webp';
+import juddImage from '../judd.webp';
+import finnImage from '../finn.webp';
+import liamImage from '../liam.webp';
+import tomImage from '../tom.webp';
 
-const memberImages = {
-  "callum.png": callumImage,
-  "judd.png": juddImage,
-  "finn.png": finnImage,
-  "liam.png": liamImage
+// Create a mapping from the image filename to the imported module
+const imageMap = {
+  'callum.webp': callumImage,
+  'judd.webp': juddImage,
+  'finn.webp': finnImage,
+  'liam.webp': liamImage,
+  'tom.webp': tomImage,
 };
 
 const containerVariants = {
@@ -53,22 +58,18 @@ const Members = () => {
       <motion.div className={styles.membersGrid} variants={containerVariants}>
         {members.map((member, index) => (
           <motion.div
-            key={member.username}
+            key={index}
             className={styles.memberCard}
             variants={itemVariants}
           >
-            <h3 className={styles.memberName}>{member.name}</h3>
-            <img src={memberImages[member.image]} alt={member.name} className={styles.memberImage} />
-            <p className={styles.memberUsername}>@{member.username}</p>
-            {/* <PlayerStats username={member.username} /> */}
-            {member.trackerUrl ? (
-              <a href={member.trackerUrl} target="_blank" rel="noopener noreferrer" className={styles.statsLink}>
-                <FaFortAwesome />
-                <span>Track The Rise</span>
-              </a>
-            ) : (
-              <p className={styles.noLink}>Stats Coming Soon</p>
-            )}
+            <div className={styles.imageContainer}>
+              <img src={imageMap[member.image]} alt={member.name} className={styles.memberImage} />
+            </div>
+            <div className={styles.memberInfo}>
+              <h3>{member.name}</h3>
+              <p className={styles.username}>{member.username}</p>
+              <PlayerStats trackerUrl={member.trackerUrl} />
+            </div>
           </motion.div>
         ))}
       </motion.div>
