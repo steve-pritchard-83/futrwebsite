@@ -54,7 +54,7 @@ const Members = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <motion.h2 variants={itemVariants}>THE LINEUP</motion.h2>
+      <motion.h2 variants={itemVariants}>THE SQUAD</motion.h2>
       <motion.div className={styles.membersGrid} variants={containerVariants}>
         {members.map((member, index) => (
           <motion.div
