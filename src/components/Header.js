@@ -68,7 +68,11 @@ const Header = () => {
         </Link>
       </nav>
       {isMobile && (
-        <button className={styles.hamburger} onClick={toggleNav} aria-label="Toggle navigation">
+        <button
+          className={`${styles.hamburger} ${isNavOpen ? styles.open : ''}`}
+          onClick={toggleNav}
+          aria-label="Toggle navigation"
+        >
           <span className={styles.bar}></span>
           <span className={styles.bar}></span>
           <span className={styles.bar}></span>
